@@ -1,0 +1,19 @@
+
+//- title: 页面名字
+mixin header(title)
+  .header.md-accent-bg(layout='row', layout-align='space-between')
+    div(layout='column', layout-align='center start')
+      .title #{title}
+
+
+#ea-execution-list.page-layout.simple.fullwidth.doc-page.element-doc-page
+
+  +header('测试执行')
+
+  md-content
+    md-nav-bar(md-selected-nav-item='vm.currentNavItem' nav-bar-aria-label="Maps")
+      md-nav-item(md-nav-sref='app.exe-list.active' name='active') 执行中（我）
+      md-nav-item(md-nav-sref='app.exe-list.finished' name='finished') 已完成（我）
+      md-nav-item(md-nav-sref='app.exe-list.all' name='all') 其它的测试执行
+
+    md-content.md-whiteframe-4dp.card(ui-view='tabContent' flex)

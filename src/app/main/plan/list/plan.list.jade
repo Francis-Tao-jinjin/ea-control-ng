@@ -1,0 +1,30 @@
+mixin head
+  div.header.md-accent-bg
+    div(layout="layout" layout-align="start center")
+    .title 计划列表
+
+mixin createPlanButton
+  .create-plan-button
+    md-button(aria-label="新建测试计划")
+      md-icon.md-accent(md-font-icon="icon-plus-circle" aria-label="new plan")
+      span.ml-10.new-test-plan 新建计划
+
+#ea-plan.page-layout.simple.tabbed.doc-page(layout='column')
+  // HEADER
+  .header.md-accent-bg(layout='row', layout-align='space-between')
+    div(layout='column', layout-align='center start')
+      .title 测试计划列表
+    div(layout='row', layout-align='start center')
+      .create-plan-button
+        md-button.md-raised(ng-click='vm.showCreateDialog()')
+          md-icon.md-accent(md-font-icon='icon-plus-circle' aria-label="new plan")
+          span  新建测试计划
+  // / HEADER
+  .content
+    md-nav-bar(md-selected-nav-item='vm.selectedNavItem', nav-bar-aria-label='Maps')
+      md-nav-item(md-nav-sref='app.plan-list.ready' name='tableReady') 我的可执行计划
+      md-nav-item(md-nav-sref='app.plan-list.waiting' name='tableWaiting') 我的待处理计划
+      md-nav-item(md-nav-sref='app.plan-list.others' name='tableOthers') 其它计划
+
+    md-content.ea-list.card.md-whiteframe-4dp(ng-cloak='' ui-view='tableTabContent' flex='')
+     

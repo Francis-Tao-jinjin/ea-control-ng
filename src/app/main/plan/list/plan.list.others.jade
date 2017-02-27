@@ -1,0 +1,38 @@
+table.dataTable.row-border.hover(datatable='ng', dt-options='vm.dtOptions')
+  thead
+    tr
+      th.secondary-text
+        .table-header
+          span.column-title NO.
+      th.secondary-text
+        .table-header
+          span.column-title Name
+      th.secondary-text
+        .table-header
+          span.column-title Assuming Time
+      th.secondary-text
+        .table-header
+          span.column-title Creator
+      th.secondary-text
+        .table-header
+          span.column-title Last Modify
+      th Excute
+      th Details
+    //-
+      th.secondary-text
+        .table-header
+          span.column-title Excute
+      th.secondary-text
+        .table-header
+          span.column-title Details
+  tbody
+    tr(data-ng-repeat='i in []|range:8')
+      td {{i}}
+      td name
+      td assuming time  
+      td creator
+      td last edit time
+      td EX
+      td
+        md-button.detail-btn(ng-click='') detail
+

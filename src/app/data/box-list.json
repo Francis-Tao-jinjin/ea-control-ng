@@ -1,0 +1,88 @@
+{
+  "data": [{
+    "boxId":1,
+    "boxStatus": "busy",
+    "boxName": "测试盒1",
+    "executionId":1,
+    "executionName": "洗碗机XW自动洗测试",
+    "executionStatus": "active",
+    "startTime": 1480918180449,
+    "endTime": 1480918073047,
+    "lastExecuteStepId": 3,
+    "stepName": "进水",
+    "reason": null
+  },{
+    "boxId":2,
+    "boxStatus": "idle",
+    "boxName": "测试盒2",
+    "executionId":1,
+    "executionName": "洗碗12自动洗测试",
+    "executionStatus": "fail",
+    "startTime": 1480917605779,
+    "endTime": 1480918119221,
+    "lastExecuteStepId": 4,
+    "stepName": "频率测试",
+    "reason": "超时"
+  },{
+    "boxId":3,
+    "boxStatus": "idle",
+    "boxName": "测试盒3",
+    "executionId":1,
+    "executionName": "洗碗机43自动洗测试",
+    "executionStatus": "pass",
+    "startTime": 1480917160561,
+    "endTime": 1480918115156,
+    "lastExecuteStepId": 3,
+    "stepName": "进水",
+    "reason": null
+  },{
+    "boxId":4,
+    "boxStatus": "idle",
+    "boxName": "测试盒4",
+    "executionId":null,
+    "executionName": null,
+    "executionStatus": null,
+    "startTime": null,
+    "endTime": null,
+    "lastExecuteStepId": null,
+    "stepName": null,
+    "reason": null
+  },{
+    "boxId":5,
+    "boxStatus": "idle",
+    "boxName": "测试盒5",
+    "executionId":1,
+    "executionName": "洗碗机XW自动洗测试",
+    "executionStatus": "pass",
+    "startTime": "1970-01-05T12:35:33.276Z",
+    "endTime": "1970-01-07T18:06:03.003Z",
+    "lastExecuteStepId": 3,
+    "stepName": "进水",
+    "reason": null
+  },{
+    "boxId":6,
+    "boxStatus": "idle",
+    "boxName": "测试盒6",
+    "executionId":1,
+    "executionName": "洗碗机XW自动洗测试",
+    "executionStatus":"fail",
+    "startTime": 1480916802779,
+    "endTime": 1480918102836,
+    "lastExecuteStepId": 3,
+    "stepName": "进水",
+    "reason": "超时"
+  },{
+    "boxId":7,
+    "boxStatus": "busy",
+    "boxName": "测试盒7",
+    "executionId":1,
+    "executionName": "洗碗机XW自动洗测试",
+    "executionStatus":"active",
+    "startTime": 1480917153044,
+    "endTime": 1480918192706,
+    "lastExecuteStepId": 3,
+    "stepName": "进水",
+    "reason": null
+  }],
+  "timestamp":1480908073047
+}

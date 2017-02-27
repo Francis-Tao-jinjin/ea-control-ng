@@ -1,0 +1,32 @@
+md-dialog(aria-label='create Staff')
+  form#add-tester-form(ng-cloak='')
+    md-toolbar
+      .md-toolbar-tools
+        h2 添加测试员
+        h2(style="color:red;") {{alertMSG}}
+        span(flex='')
+        md-button.md-icon-button(ng-click='cancel()')
+          img(src='assets/icons/close1.png', aria-label='Close dialog')
+    md-dialog-content
+      div.form-header(layout='row')
+        h3(flex='30') 姓名
+        h3(flex='50') 用户名
+        div(flex='20') 
+          md-button(ng-click='addRow()') +
+      div.form-body(layout='column')
+        div.form-row(data-ng-repeat='i in vm.StaffNumber' layout='row')
+          md-input-container.md-block(flex='30')
+            label  姓名
+            input(type='text' name='name')
+          md-input-container.md-block(flex='50')
+            label  用户名
+            input(type='text' name='userName')
+          div(flex='20')
+            md-button(ng-click='deleteRow($index)') -
+    md-dialog-actions(layout='row')
+      span(flex='')
+      md-button(ng-click='cancel()') 取消
+      md-button(ng-click="commit('Click Ok to create plan')") 确定
+
+
+

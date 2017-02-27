@@ -1,0 +1,25 @@
+md-dialog(aria-label='Edit Plan')
+  form#edit-plan-form(ng-cloak='')
+    md-toolbar
+      .md-toolbar-tools
+        h2 编辑测试计划
+        span(flex='')
+        md-button.md-icon-button(ng-click='cancel()')
+          img(src='assets/icons/close1.png', aria-label='Close dialog')
+        //-  
+          md-icon(md-svg-src='assets/angular-material-assets/img/icons/ic_close_24px.svg', aria-label='Close dialog')
+    md-dialog-content
+      div(layout-gt-sm='column') 希望删除的文档
+        md-input-container.md-block.doc-list(layout='row' data-ng-repeat='doc in vm.docInfo' flex='')
+          input.delCheck(type="checkbox" name="docToDel" value="{{doc.filename}}" flex='10')
+          span.delDoc {{doc.filename}}
+      h3 上传新文档
+      md-input-container.md-block
+        input.md-button.md-ink-ripple.md-default-theme(type="file" ng-model='planFile' name='file')
+      md-input-container.md-block
+        label 原因
+        textarea(ng-model='planData.reason' name='reason', md-maxlength='150', rows='5', md-select-on-focus='')
+    md-dialog-actions(layout='row')
+      span(flex='')
+      md-button(ng-click='cancel()') 取消
+      md-button(ng-click="commit('Click Ok to create plan')") 确定

@@ -1,0 +1,29 @@
+md-dialog(aria-label='Create Plan')
+  form#new-plan-form(ng-cloak='')
+    md-toolbar
+      .md-toolbar-tools
+        h2 创建测试计划
+        h2(style="color:red;") {{alertMSG}}
+        span(flex='')
+        md-button.md-icon-button(ng-click='cancel()')
+          img(src='assets/icons/close1.png', aria-label='Close dialog')
+        //-  
+          md-icon(md-svg-src='assets/angular-material-assets/img/icons/ic_close_24px.svg', aria-label='Close dialog')
+    md-dialog-content
+      div(layout-gt-sm='row')
+        md-input-container.md-block(flex-gt-sm='')
+          label Plan Name
+          input(type='text' ng-model='planData.planname' name='planname')
+        md-input-container.md-block(flex-gt-sm='')
+          label Creator
+          input(ng-model='planData.creator' name='creator')
+      md-input-container.md-block
+        input.md-button.md-ink-ripple.md-default-theme(type="file" ng-model='planFile' name='file')
+      .md-block {{planFile}}
+      md-input-container.md-block
+        label 备注
+        textarea(ng-model='planData.comment' name='comment' md-maxlength='150', rows='5', md-select-on-focus='')
+    md-dialog-actions(layout='row')
+      span(flex='')
+      md-button(ng-click='cancel()') 取消
+      md-button(ng-click="commit('Click Ok to create plan')") 确定

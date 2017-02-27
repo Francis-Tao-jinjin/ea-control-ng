@@ -1,0 +1,49 @@
+table.dataTable.row-border.hover(datatable='ng', dt-options='vm.dtOptions')
+	thead
+		tr
+			th.secondary-text
+				.table-header
+					span.column-title 序号
+			th.secondary-text
+				.table-header
+					span.column-title 计划名称
+			th.secondary-text
+				.table-header
+					span.column-title 预计用时
+			th.secondary-text
+				.table-header
+					span.column-title 创建者
+			th.secondary-text
+				.table-header
+					span.column-title 上次编辑时间
+			th 执行
+			th 详细
+		//-
+			th.secondary-text
+				.table-header
+					span.column-title 执行
+			th.secondary-text
+				.table-header
+					span.column-title 详细
+	tbody
+		tr(data-ng-repeat="plan in vm.ReadyPlans")
+			td {{$index+1}}
+			td {{plan.planname}}
+			td {{plan.assumeTime}}
+			td {{plan.creator}}
+			td {{plan.lastModify}}
+			td 
+				md-button.detail-btn(ng-click='vm.goCreateNewEx($index)') EX
+			td
+				md-button.detail-btn(ng-click='vm.goToPlanDetail(plan._id)') detail
+//-
+	tbody
+		tr(data-ng-repeat="i in []|range:20")
+			td {{i}}
+			td name
+			td assuming time  
+			td creator
+			td last edit time
+			td EX
+			td
+				md-button.detail-btn(ng-click='vm.goToPlanDetail(i)') detail

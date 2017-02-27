@@ -1,0 +1,24 @@
+{
+  "data": [{
+    "boxId":1,
+    "boxName": "测试盒01"
+  },{
+    "boxId":3,
+    "boxName": "测试盒22"
+  },{
+    "boxId":5,
+    "boxName": "测试盒5"
+  },{
+    "boxId":2,
+    "boxName": "测试盒02"
+  },{
+    "boxId":6,
+    "boxName": "测试盒06"
+  },{
+    "boxId":7,
+    "boxName": "测试盒07"
+  },{
+    "boxId":8,
+    "boxName": "测试盒08"
+  }]
+}

@@ -1,0 +1,31 @@
+{
+  "data": [{
+    "planId":1,
+    "planName": "自动洗测试1",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  },{
+    "planId":1,
+    "planName": "频率测试",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  },{
+    "planId":1,
+    "planName": "自动洗测试5",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  },{
+    "planId":1,
+    "planName": "温度测试",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  },{
+    "planId":1,
+    "planName": "出水测试",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  },{
+    "planId":1,
+    "planName": "进水测试",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  },{
+    "planId":1,
+    "planName": "旋转测试",
+    "script-url": "ttp://hcp.sysu.edu.cn/stage/v2/public/plan/1/script/高速洗涤测试计划脚本.ls"
+  }]
+}

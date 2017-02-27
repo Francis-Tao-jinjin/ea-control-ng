@@ -1,0 +1,16 @@
+#box-page.page-layout.simple.fullwidth.doc-page.element-doc-page
+  .header.md-accent-bg(layout='row' layout-align='space-between center')
+    div(layout='column' layout-align='center start')
+      .title 测试盒管理
+    div.search(layout='row' layout-align='start center' flex)
+      md-icon.white-text.icon.search-icon(md-font-icon="icon-magnify")
+      input#box-search.search-input(type="text" ng-model="vm.search" value="" placeholder="Search" translate translate-attr-placeholder="Search" flex)
+      div {{search}}
+
+  md-content
+    md-nav-bar(md-selected-nav-item='vm.currentBoxList' nav-bar-aria-label='maps')
+      md-nav-item(md-nav-sref='app.box.busy' name='busyList') 运行中的盒子
+      md-nav-item(md-nav-sref='app.box.idle' name='idleList') 闲置的盒子
+      md-nav-item(md-nav-sref='app.box.all' name='allList') 所有盒子
+
+    md-content.pl-25.pb-50.m-10(ng-cloak='' ui-view='boxTabContent' flex='')

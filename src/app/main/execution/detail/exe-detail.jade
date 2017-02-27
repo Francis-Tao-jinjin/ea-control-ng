@@ -1,0 +1,77 @@
+
+//- title: 页面名字
+mixin header(title)
+  .header.md-accent-bg(layout='row', layout-align='space-between')
+    div(layout='column', layout-align='center start')
+      .title #{title}
+
+mixin basic-info
+  .basic-info.md-whiteframe-2dp.m-10.p-15
+    .md-headline 基本信息
+    div.p-20(layout layout-align='space-between start')
+      div(layout='column' flex)
+        p.md-subhead 名称：
+          span {{ vm.basic.executionName }}
+        p.md-subhead 测试盒：
+          span {{ vm.basic.boxName }}
+        p.md-subhead 测试计划：
+          span {{ vm.basic.planName }}
+        p.md-subhead 测试员：
+          span {{ vm.basic.creator }}
+
+      div(layout='column' flex)
+        p.md-subhead 状态：{{ vm.basic.status | transformStatus }}
+        p.md-subhead 开始时间：{{ vm.basic.startTime | humanize }}
+        p.md-subhead(ng-if='vm.basic.status == "active"') 结束时间：剩余 {{ vm.leftDuration | duration }}
+        p.md-subhead(ng-if='vm.basic.status != "active"') 结束时间：{{ vm.basic.endTime | humanize }}
+
+        p.md-subhead 备注：{{ vm.basic.comment }}
+
+mixin circuit-board
+  .circuit-board.md-whiteframe-2dp.m-10.p-15
+    .md-headline 电控板
+    div(flex='100' layout layout-align='center center')
+      canvas(id='canvas' width="1000px" height="330px")
+
+
+mixin step-progress
+  .step-progress.md-whiteframe-2dp.m-10.p-15(layout='column' layout-align='start space-between')
+    div(layout layout-align='space-between center')
+      .md-headline 步骤详情
+      .summary(layout layout-align='space-around center')
+        p.md-title.mr-25(ng-if='vm.basic.status == "active"') 预计时长：
+          span.md-subhead {{ (vm.basic.endTime - vm.basic.startTime) | duration}}
+
+        p.md-title.mr-25(ng-if='vm.basic.status != "active"') 总计运行：
+          span.md-subhead {{ (vm.basic.endTime - vm.basic.startTime) | duration}}
+        
+        p.md-title(ng-if='vm.basic.status == "active"') 进度：
+          span.md-subhead {{ vm.exeDetail.length }} / {{ vm.stepInfo.length }} ( {{ vm.runDuration | duration:'ms' }} )
+
+    div.steps.ml-20(layout='row' layout-align='start center' layout-wrap)
+      div.step.mb-15.mr-20.pv-25.ph-15(class='{{step.status}}' ng-repeat='step in vm.stepDetail' layout='row' layout-align='space-between center')
+        .md-title.text-bold(flex='15') {{ step.stepId }}
+        .name.md-title(flex='45') {{ step.stepName }}
+        .estimate-exe-time.md-subhead(ng-if='step.status != "fail"' layout layout-align='end' flex='40') 
+          span(ng-if='step.timeUsed') {{ step.timeUsed | duration:'s' }}
+          span(ng-if='!step.timeUsed') {{ step.estimatedTime | duration:'s' }}
+        .estimate-exe-time.md-subhead(ng-if='step.status == "fail"' layout layout-align='end' flex='40') 
+          span {{ step.reason }}
+
+
+mixin wave-form
+  .wave-form.md-whiteframe-2dp.m-10.p-15
+    .md-headline 当前测试波形图
+    div(layout='column' layout-align='space-between' layout-wrap)
+      .waveform.m-15
+        nvd3#waveform(options='vm.waveOptions', data='vm.waveData')
+
+
+
+#ea-execution-detail.page-layout.simple.fullwidth.doc-page.element-doc-page
+
+  +header('测试执行详情')
+  +basic-info
+  +circuit-board
+  +step-progress
+  +wave-form

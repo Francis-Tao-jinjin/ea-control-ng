@@ -1,0 +1,52 @@
+mixin box(box)
+  .badge.md-offline-bg(ng-if= "box.boxStatus=='offline'") 离线
+  .badge.md-busy-bg(ng-if= "box.boxStatus=='busy'") 忙碌
+  .badge.md-pass-bg(ng-if= "box.boxStatus!='offline'&&box.executionStatus=='pass'") 成功 
+  .badge.md-warn-bg(ng-if= "box.boxStatus!='offline'&&box.executionStatus=='fail'") 失败
+              
+  .package-type.md-accent-fg {{box.boxName}}
+  .period(layout layout-align='center start') {{box.executionName}}
+
+  md-button( ui-sref="app.exe-detail({exeId: box.executionId})")
+    .terms(layout="column" layout-align="start start")
+      .term 
+        span.text-bold 开始时间：{{box.startTime | date:'yyyy/MM/dd HH:mm:ss'}}
+      .term(ng-if="box.boxStatus == 'idle' || box.boxStatus == 'offline'") 
+        span.text-bold 结束时间：{{box.endTime | date:'yyyy/MM/dd HH:mm:ss'}}
+      .term(ng-if="box.boxStatus == 'busy'") 
+        span.text-bold 剩余时间：{{(box.endTime - vm.timestamp)| duration}}
+      .term(ng-if='box.boxStatus == "idle" && box.executionStatus == "pass"')
+        span.text-bold 测试结果：通过
+      .term(ng-if='box.boxStatus == "idle" && box.executionStatus == "fail"')
+        span.text-bold 测试结果：第{{box.lastExecuteStepId}}步 &nbsp; {{ box.stepName }} &nbsp; {{ box.reason }}
+      .term(ng-if='box.boxStatus == "busy"')
+        span.text-bold 测试结果：运行至第{{ box.lastExecuteStepId }}步 &nbsp; {{ box.stepName }}
+    
+
+mixin new-box(box)
+  .badge.md-idle-bg 全新
+  .package-type.md-accent-fg {{ box.boxName }}
+  .period 这个盒子还未使用
+
+  md-button(disabled)
+    .terms(layout="column" layout-align="start start")
+      .term 
+        span.text-bold 开始时间：---
+      .term 
+        span.text-bold 结束时间：---
+      .term
+        span.text-bold 测试结果：---
+
+
+#ea-admin-box-details.page-layout.simple.fullwidth.doc-page.element-doc-page
+  .header.md-accent-bg(layout='row' layout-align='space-between center')
+    div(layout='column' layout-align='center start')
+      .title 测试盒管理
+
+  md-content
+    #ea-box.price-tables(flex layout="row" layout-align='start' layout-wrap)
+      .price-table.style-2.md-whiteframe-2dp(layout="column" layout-align='start center' ng-repeat='box in vm.boxes | filter:vm.search')
+        div(ng-if='box.executionStatus != null')
+          +box(box)
+        div(ng-if='box.executionStatus == null')
+          +new-box(box)

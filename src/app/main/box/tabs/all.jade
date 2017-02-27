@@ -1,0 +1,10 @@
+include box-list.partial.jade
+
+#ea-box.price-tables(flex layout="row" layout-align='start' layout-wrap)
+  .price-table.style-2.md-whiteframe-2dp(layout="column" layout-align='start center' ng-repeat='box in vm.boxes | filter:vm.search')
+    div(ng-if='box.executionStatus != null')
+      +box(box)
+    div(ng-if='box.executionStatus == null')
+      +new-box(box)
+
+    +newExecutionBtn(box)

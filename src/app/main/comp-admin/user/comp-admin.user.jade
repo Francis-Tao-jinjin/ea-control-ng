@@ -1,0 +1,37 @@
+#c-plan.page-layout.simple.tabbed.doc-page(layout='column')
+	// HEADER
+	.header.md-accent-bg(layout='row', layout-align='space-between')
+		div(layout='column', layout-align='center start')
+			.title 企业管理员用户管理界面
+		div(layout='row', layout-align='start center')
+			.create-plan-button
+				md-button.md-raised(ng-click='vm.showAddDialog()')
+					md-icon.md-accent(md-font-icon='icon-plus-circle' aria-label="new plan")
+					span  添加测试员
+		// / HEADER
+	.content
+		md-content.ea-list.card.md-whiteframe-4dp(ng-cloak='' ui-view='tableTabContent' flex='')
+			table.dataTable.row-border.hover(datatable='ng', dt-options='vm.dtOptions')
+				thead
+					tr
+						th.secondary-text
+							.table-header
+								span.column-title 序号
+						th.secondary-text
+							.table-header
+								span.column-title 姓名
+						th.secondary-text
+							.table-header
+								span.column-title 用户名
+						th.secondary-text
+							.table-header
+								span.column-title 创建时间
+						th 删除
+				tbody
+					tr(data-ng-repeat="staff in vm.people")
+						td {{$index+1}}
+						td {{staff.fullname}}
+						td {{staff.username}}
+						td {{staff.createdAt}}
+						td
+							md-button.detail-btn(ng-click='vm.deletePerson($index)') 编辑

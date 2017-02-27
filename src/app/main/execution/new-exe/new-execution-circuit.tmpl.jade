@@ -1,0 +1,15 @@
+md-dialog#circuit-dialog(aria-label='new-execution' flex=50)
+  md-toolbar.md-accent
+    .md-toolbar-tools
+      h2 新建测试执行
+      span(flex)
+      md-button.md-icon-button(ng-click='cancel()')
+        img(src='assets/icons/close1.png', aria-label='Close dialog')
+
+  .content.md-padding(layout='column')
+    form(layout='column')
+      h4 {{planName}}--接线图
+      div(flex='100' layout layout-align='center center')
+        canvas(id='canvas' width="1000px" height="330px")
+      md-button.cta-button.md-accent(ng-click="startExecution()")
+        label {{executeButton}}

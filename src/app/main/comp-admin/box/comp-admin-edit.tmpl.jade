@@ -1,0 +1,17 @@
+md-dialog(aria-label='Edit Box')
+  form#new-plan-form(ng-cloak='')
+    md-toolbar
+      .md-toolbar-tools
+        h2 修改测试盒名称
+        h2(style="color:red;") {{alertMSG}}
+        span(flex='')
+        md-button.md-icon-button(ng-click='cancel()')
+          img(src='assets/icons/close1.png', aria-label='Close dialog')
+    md-dialog-content
+      md-input-container.md-block(flex-gt-sm='')
+        label  测试盒名称
+        input(type='text' ng-model='boxName' name='boxName')
+    md-dialog-actions(layout='row')
+      span(flex='')
+      md-button(ng-click='cancel()') 取消
+      md-button(ng-click="commit('Click Ok to create plan')") 确定

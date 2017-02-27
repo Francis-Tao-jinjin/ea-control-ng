@@ -1,0 +1,114 @@
+mixin head
+	div.header.md-accent-bg(layout="layout" layout-align="start center")
+		.title 测试计划详情
+
+#test-plan-details.page-layout.simple.fullwidth.doc-page.element-doc-page
+	+head
+	.card.basic-info-panel.md-whiteframe-4dp(layout='column')
+		div.function-btn-group(layout='row')
+			h1 计划基本详情
+			md-button.edit-plan-btn(ng-click='vm.editPlan()') 编辑
+			md-button.excute-plan-btn(ng-click='vm.goCreateNewEx()') 执行
+		div(layout='row')
+			div(layout='column' flex='')
+				div(layout="row")
+					.preview(layout='column', layout-align='center', flex='10')
+						span 名称：
+					.preview(layout='column', layout-align='center', flex='30')
+						span {{ vm.thePlan.planName ||'洗衣机02自动洗'}}
+				div(layout="row")
+					.preview(layout='column', layout-align='center', flex='10')
+						span 创建者：
+					.preview(layout='column', layout-align='center', flex='30')
+						span {{ vm.thePlan.creator ||'测试员7号'}}
+				div(layout="row")
+					.preview(layout='column', layout-align='center', flex='10')
+						span 状态：
+					.preview(layout='column', layout-align='center', flex='30')
+						span {{ vm.thePlan.type ||'可执行（暂无测试文档）'}}
+				div(layout="row")
+					.preview(layout='column', layout-align='center', flex='10')
+						span 备注：
+					.preview(layout='column', layout-align='center', flex='30')
+						span {{ vm.thePlan.comment ||'一些备注'}}
+
+		h1 文档和脚本
+
+		div(layout="row")
+			h2(flex='10') 测试文档：
+			ul.doc-list(layout='column' flex='30')
+				li(data-ng-repeat="doc in vm.docInfo")
+					.preview(layout='column' flex='100')
+						div(layout="row" flex='100')
+							div {{$index+1}} {{doc.filename || '测试文档' }}
+							md-button.download-doc-btn(href="{{doc.url}}") 下载
+
+			div(flex='5')
+			h2(flex='10') 测试脚本：
+			div.script-item(layout='column' flex='35')
+				div.preview(layout="row")
+					div {{vm.scriptInfo.filename || '洗衣机测试脚本_v1'}}
+					md-button.download-script-btn(href="{{vm.scriptInfo.url}}") 下载
+					//-
+						a(href="http://feelgrafix.com/data/pictures/pictures-11.jpg") 下载
+	//-
+		div.upload-doc(layout='row')
+			h2 上传新文档：
+			md-button.upload-doc-btn 选择文件
+
+	.card.doc-history-panel.md-whiteframe-4dp(layout='column')
+		h1 历史修改记录
+		table.dataTable.row-border.hover
+			thead
+				tr
+					th.secondary-text
+						.table-header
+							span.column-title 上次编辑时间
+					th.secondary-text
+						.table-header
+							span.column-title 操作
+					th.secondary-text
+						.table-header
+							span.column-title 原因
+					th.secondary-text
+						.table-header
+							span.column-title 反馈
+
+			tbody
+				tr(data-ng-repeat="item in vm.docHistory")
+					td {{item.lastModify}}
+					td {{item.operate}}
+					td {{item.reason}}
+					td {{item.feedback}}
+
+	.card.excute-history-panel.md-whiteframe-4dp(layout='column')
+		h1 历史执行记录
+		table.dataTable.row-border.hover
+			thead
+				tr
+					th.secondary-text
+						.table-header
+							span.column-title 执行名称
+					th.secondary-text
+						.table-header
+							span.column-title 测试盒
+					th.secondary-text
+						.table-header
+							span.column-title 执行者
+					th.secondary-text
+						.table-header
+							span.column-title 开始时间
+					th.secondary-text
+						.table-header
+							span.column-title 状态
+
+			tbody
+				tr(data-ng-repeat="item in vm.exeHistory")
+					td {{item.exename}}
+					td {{item.box}}
+					td {{item.operator}}
+					td {{item.StartTime}}
+					td {{item.type}}
+
+
+

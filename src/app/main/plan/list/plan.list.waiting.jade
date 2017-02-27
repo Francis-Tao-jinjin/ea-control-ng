@@ -1,0 +1,37 @@
+table.dataTable.row-border.hover(datatable='ng', dt-options='vm.dtOptions')
+	thead
+		tr
+			th.secondary-text
+				.table-header
+					span.column-title 序号
+			th.secondary-text
+				.table-header
+					span.column-title 计划名称
+			th.secondary-text
+				.table-header
+					span.column-title 创建者
+			th.secondary-text
+				.table-header
+					span.column-title 上次编辑时间
+			th.secondary-text
+				.table-header
+					span.column-title 操作
+			th 原因
+			th 详细
+		//-
+			th.secondary-text
+				.table-header
+					span.column-title 原因
+			th.secondary-text
+				.table-header
+					span.column-title 详细
+	tbody
+		tr(data-ng-repeat="i in []|range:30")
+			td {{i}}
+			td name 
+			td creator
+			td last edit time
+			td task
+			td reason
+			td
+				md-button.detail-btn(ng-click='') detail

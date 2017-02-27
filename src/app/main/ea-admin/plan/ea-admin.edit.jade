@@ -1,0 +1,78 @@
+mixin basic-info
+  .md-whiteframe-1dp.card
+    div(layout="row")
+      .plan-name.md-subhead(flex) 名称：{{ vm.basic.planName }}
+      .creator.md-subhead(flex) 公司：{{ vm.basic.companyName }}
+      .creator.md-subhead(flex) 创建者：{{ vm.basic.creator }}
+    div(layout="row")
+      .last-modified.md-subhead(flex) 上次修改时间：{{ vm.basic.lastModified | humanize}}
+      .op-type.md-subhead(flex) 操作类型：{{ vm.basic.opType }}
+      .reason.md-subhead(flex) 原因：{{ vm.basic.reason }}
+
+    div(layout='row')
+      .plan-docs(flex='50' layout layout-align='start start')
+        .md-title 测试文档：
+        .plan-doc(layout="column") 
+          a.md-subhead(ng-repeat='doc in vm.planDocs' src="") {{ doc.name }}
+      .plan-script(flex='50' layout layout-align='start start')
+        .md-title 测试脚本：
+        .plan-script(layout='column')
+          a.md-subhead(ng-repeat='script in vm.planScripts' src='') {{ script.name }}
+
+mixin edit-history
+  .md-whiteframe-1dp.card.simple-table-container
+    .md-title 历史修改记录
+    .ms-responsive-table-wrapper
+      table.simple.row-border.hover(ms-responsive-table)
+        thead
+          tr
+            th.secondary-text
+              .table-header
+                span.column-title 上次编辑时间
+            th.secondary-text
+              .table-header
+                span.column-title 操作类型
+            th.secondary-text
+              .table-header
+                span.column-title 原因
+            th.secondary-text
+              .table-header
+                span.column-title 管理员
+            th.secondary-text
+              .table-header
+                span.column-title 上次提交时间
+        tbody
+          tr(ng-repeat='his in vm.editHistory')
+            td {{ his.lastModified | humanize}}
+            td {{ his.opType }}
+            td {{ his.reason }}
+            td {{ his.manager}}
+            td {{ his.lastSubmitted | humanize}}
+
+mixin operation
+  .md-whiteframe-1dp.card
+    .md-title 上传脚本
+    form#edit-add-script(ng-cloak='')
+      md-input-container.md-block
+        input.md-button.md-ink-ripple.md-default-theme(type="file" ng-model='vm.planScript' name='file' required)
+      md-input-container.md-block
+        label 备注
+        textarea(type="text" ng-model="vm.waitUploadData.comment", name='reason', md-maxlength='100', rows='3', md-select-on-focus='' required)
+    md-button.cta-button.md-accent.md-raised(ng-click="vm.commit('确认提交')") 确认提交
+    //-  
+      md-button.cta-button.md-accent.md-raised(ng-click="") 上传测试脚本
+      md-input-container.md-block
+        label 备注
+        textarea.md-input.ng-empty.hg-touched.ng-vaild.ng-pristine(type="text", ng-model="vm.scriptComment", md-maxlength="100", rows="3")
+      md-button.cta-button.md-accent.md-raised(ng-click="") 确认提交
+
+
+#ea-admin-plan-edit.page-layout.simple.fullwidth.doc-page.element-doc-page
+  .header.md-accent-bg(layout='row' layout-align='space-between center')
+    div(layout='column' layout-align='center start')
+      .title 测试计划编辑
+
+  md-content
+    +basic-info
+    +operation
+    +edit-history

@@ -1,0 +1,31 @@
+
+table.dataTable.row-border.hover(datatable='ng' dt-options='vm.dpOptions')
+  thead
+    tr
+      th.secondary-text
+        .table-header
+          span.column-title 名称
+      th.secondary-text
+        .table-header
+          span.column-title 测试计划
+      th.secondary-text
+        .table-header
+          span.column-title 测试盒
+      th.secondary-text
+        .table-header
+          span.column-title 开始时间
+      th.secondary-text
+        .table-header
+          span.column-title 结束时间
+      th.secondary-text
+        .table-header
+          span.column-title 结果
+
+  tbody
+    tr(ng-repeat='exe in vm.executions' ui-sref='app.exe-detail({exeId: exe.executionId})')
+      td {{ exe.executionName }}
+      td {{ exe.planName }}
+      td {{ exe.boxName }}
+      td {{ exe.startTime | humanize }}
+      td {{ exe.endTime | humanize }}
+      td {{ exe.status | transformStatus }}

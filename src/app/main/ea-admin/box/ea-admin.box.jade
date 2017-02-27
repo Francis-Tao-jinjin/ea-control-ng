@@ -1,0 +1,60 @@
+#ea-admin-box.page-layout.simple.tabbed.doc-page(layout='column')
+	// HEADER
+	.header.md-accent-bg(layout='row', layout-align='space-between')
+		div(layout='column', layout-align='center start')
+			.title ea管理员测试盒界面
+		div(layout='row', layout-align='start center')
+		//-	
+			.create-plan-button
+				md-button.md-raised(ng-click='vm.showCreateDialog()')
+					md-icon.md-accent(md-font-icon='icon-plus-circle' aria-label="new plan")
+						span  新建测试计划
+	// / HEADER
+	.content
+		md-content.ea-list.card.md-whiteframe-4dp(ng-cloak='' ui-view='tableTabContent' flex='')
+			table.dataTable.row-border.hover(datatable='ng', dt-options='vm.dtOptions')
+				thead
+					tr
+						th.secondary-text
+							.table-header
+								span.column-title 序号
+						th.secondary-text
+							.table-header
+								span.column-title 公司
+						th.secondary-text
+							.table-header
+								span.column-title 盒子数目
+						th.secondary-text
+							.table-header
+								span.column-title 最近一批到期时间
+						th.secondary-text
+							.table-header
+								span.column-title 最后一批启用时间
+						th 详细
+					//-
+						th.secondary-text
+							.table-header
+								span.column-title 执行
+						th.secondary-text
+							.table-header
+								span.column-title 详细
+				tbody
+					tr(data-ng-repeat="company in vm.CompanyInfo")
+						td {{$index+1}}
+						td {{company.company}}
+						td {{company.boxes.length}}
+						td {{company.earlistEndDate}}
+						td {{company.latstStartDate}}
+						td
+							md-button.detail-btn(ng-click='vm.goToBoxesDetail(company._id)') detail
+			//-
+				tbody
+					tr(data-ng-repeat="i in []|range:20")
+						td {{i}}
+						td name
+						td assuming time  
+						td creator
+						td last edit time
+						td EX
+						td
+							md-button.detail-btn(ng-click='vm.goToPlanDetail(i)') detail

@@ -1,0 +1,56 @@
+mixin fixBox
+  测试盒:{{vm.newExecution.box.boxName}}
+
+mixin fixPlan
+  测试计划:{{vm.newExecution.plan.planName}}
+
+mixin selectBox
+  label 测试盒
+  md-select(ng-model="vm.newExecution.box")
+    md-option(ng-repeat='box in vm.boxes' ng-value='box') {{ box.boxName }}
+
+mixin selectPlan
+  label 测试计划
+  md-select(ng-model="vm.newExecution.plan")
+    md-option(ng-repeat='plan in vm.completePlans' ng-value='plan') {{ plan.planName }} 
+
+
+
+md-dialog#new-execution-dialog(aria-label='new-execution' flex=50)
+  md-toolbar.md-accent
+    .md-toolbar-tools
+      h2 新建测试执行{{vm.currentState}}
+      h2
+      span(flex='')
+      md-button.md-icon-button(ng-click='cancel()')
+        img(src='assets/icons/close1.png', aria-label='Close dialog')
+          
+  .content.md-padding(layout='column')
+    form(layout='column')
+      div(layout="row", style="padding-bottom:20px; padding-top:10px;") 
+        div(flex)
+          测试员:{{vm.userId}}
+        div(flex ng-if="vm.currentState == 1")
+          +fixBox
+        div(flex ng-if="vm.currentState == 2")
+          +fixPlan
+      
+      md-input-container.md-block
+        label 测试执行名称
+        input(type="text", ng-model="vm.newExecution.name")
+      
+      md-input-container.md-block(ng-if="vm.currentState == 1")
+        +selectPlan
+      md-input-container.md-block(ng-if="vm.currentState == 2")
+        +selectBox
+      md-button.md-icon-button(ng-click="vm.ping(box)" ng-if="vm.currentState == 2")
+        img(src='assets/icons/connect.png')
+
+      md-input-container.md-block
+        label 备注
+        textarea.md-input.ng-empty.hg-touched.ng-vaild.ng-pristine(type="text", ng-model="vm.newExecution.comment", md-maxlength="100", rows="3")
+      
+      md-button.cta-button.md-accent(ng-if="vm.currentState == 1" ng-click="answer('ok')" ng-disabled="vm.newExecution.plan.planId == ''")
+        label 确定
+      md-button.cta-button.md-accent(ng-if="vm.currentState == 2" ng-click="answer('ok')" ng-disabled="vm.newExecution.box.boxId == ''")
+        label 确定 

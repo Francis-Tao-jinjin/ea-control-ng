@@ -1,0 +1,52 @@
+mixin fixBox
+  label 测试盒:&nbsp;{{vm.boxName}}
+
+mixin fixPlan 
+  label 测试计划:&nbsp;{{vm.planName}}
+
+mixin selectBox
+  label 测试盒
+  md-select(ng-model="vm.selectedBox")
+    md-option(ng-repeat='box in vm.idleBoxes' ng-value='box') {{ box.boxName }}
+
+mixin selectPlan
+  label 测试计划
+  md-select(ng-model="vm.selectedPlan")
+    md-option(ng-repeat='plan in vm.completePlans' ng-value='plan') {{ plan.planName }} 
+
+
+#new-exe-page.page-layout.simple.fullwidth.doc-page.element-doc-page
+  .header.md-accent-bg(layout='row' layout-align='space-between center')
+    div(layout='column' layout-align='center start')
+      .title 新建测试执行
+
+  md-content.card.basic-info-panel.md-whiteframe-4dp
+    form(layout='column')
+      div(layout="row", style="padding-bottom:20px; padding-top:10px;") 
+        div(flex)
+          label 测试员:&nbsp;{{vm.userId}}
+        div(flex ng-if="vm.type == 1")
+          +fixBox
+        div(flex ng-if="vm.type == 2")
+          +fixPlan
+      
+      md-input-container.md-block
+        label 测试执行名称
+        input(type="text", ng-model="vm.executionName")
+      
+      md-input-container.md-block(ng-if="vm.type == 1")
+        +selectPlan
+      div(layout="row" ng-if="vm.type == 2")
+        md-input-container.md-block(flex)
+          +selectBox
+        md-button.md-icon-button(ng-click="vm.ping(box)" ng-if="vm.type == 2")
+          img(src='assets/icons/connect.png')
+
+      md-input-container.md-block
+        label 备注
+        textarea.md-input.ng-empty.hg-touched.ng-vaild.ng-pristine(type="text", ng-model="vm.executionComment", md-maxlength="100", rows="3")
+      
+      md-button.cta-button.md-accent.md-raised(ng-if="vm.type == 1" ng-click="vm.getCircuitPic()" ng-disabled="vm.selectedPlan == null")
+        label 确定
+      md-button.cta-button.md-accent.md-raised(ng-if="vm.type == 2" ng-click="vm.getCircuitPic()" ng-disabled="vm.selectedBox == null")
+        label 确定

@@ -1,0 +1,33 @@
+{
+"data":  [{
+        "pin": "DI1",
+        "name": "进水阀",
+        "type": 1,
+        "unit": "--",
+        "mode": 1
+      }, {
+        "pin": "DI2",
+        "name": "排水阀",
+        "type": 1,
+        "unit": "--",
+        "mode": 1
+      }, {
+        "pin": "DI3",
+        "name": "双速管",
+        "type": 1,
+        "unit": "--",
+        "mode": 1
+      }, {
+        "pin": "DO1",
+        "name": "分水阀",
+        "type": 1,
+        "unit": "--",
+        "mode": 2
+      }, {
+        "pin": "AO1",
+        "name": "温度",
+        "type": 2,
+        "unit": "--",
+        "mode": 2
+      }]
+}
